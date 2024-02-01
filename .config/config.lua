@@ -1,1 +1,0 @@
-/Users/alvinjohansson/.config/lvim/config.lua
