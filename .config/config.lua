@@ -20,6 +20,10 @@ lvim.leader = "space"
 lvim.keys.normal_mode["|"] = ":vsplit<CR>"
 lvim.keys.normal_mode["-"] = ":split<CR>"
 
+-- movement
+lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
+lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
+
 -- Spectre
 lvim.keys.normal_mode["<leader>S"] = '<cmd>lua require("spectre").toggle()<CR>'
 lvim.keys.normal_mode["<leader>sw"] = '<cmd>lua require("spectre").open_visual({select_word=true})<CR>'
@@ -27,8 +31,10 @@ lvim.keys.visual_mode["<leader>sw"] = '<esc><cmd>lua require("spectre").open_vis
 lvim.keys.normal_mode["<leader>sp"] = '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>'
 
 -- Project
-lvim.keys.normal_mode["<leader>P"] = '<cmd>lua require("telescope").extensions.project.project{}<CR>'
+lvim.keys.normal_mode["<leader>P"] = "<cmd>lua require'telescope'.extensions.project.project{}<CR>"
 
+-- Copilot
+-- lvim.keys.normal_mode["<leader>C"] = '<cmd>lua require("copilot_panel").accept(){}<CR>'
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -71,8 +77,8 @@ formatters.setup {
 }
 
 lvim.builtin.telescope.on_config_done = function(telescope)
-  pcall(telescope.load_extension, "frecency")
-  pcall(telescope.load_extension, "neoclip")
+  -- pcall(telescope.load_extension, "frecency")
+  -- pcall(telescope.load_extension, "neoclip")
   pcall(telescope.load_extension, "project")
   pcall(telescope.load_extension, "ui-select")
   -- any other extensions loading
@@ -83,7 +89,50 @@ lvim.plugins = {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    priority = 1000
+    priority = 1000,
+    config = function()
+      require("catppuccin").setup({
+        integrations = {
+          alpha = true,
+          mason = true,
+          noice = true,
+          dap_ui = true,
+          nvimtree = true,
+          ts_rainbow2 = true,
+          window_picker = true,
+          telescope = true,
+          which_key = true,
+          cmp = true,
+          gitsigns = true,
+          treesitter = true,
+          notify = true,
+          mini = {
+            enabled = true,
+            indentscope_color = "",
+          },
+        }
+      })
+    end,
+  },
+  {
+    "christoomey/vim-tmux-navigator",
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+    },
+    keys = {
+      { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+    },
+  },
+  {
+    "HiPhish/nvim-ts-rainbow2",
   },
   {
     "windwp/nvim-spectre",
@@ -109,15 +158,55 @@ lvim.plugins = {
   {
     "nvim-telescope/telescope-ui-select.nvim",
   },
-  table.insert(lvim.plugins, {
-    "zbirenbaum/copilot-cmp",
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
     event = "InsertEnter",
-    dependencies = { "zbirenbaum/copilot.lua" },
     config = function()
-      vim.defer_fn(function()
-        require("copilot").setup()     -- https://github.com/zbirenbaum/copilot.lua/blob/master/README.md#setup-and-configuration
-        require("copilot_cmp").setup() -- https://github.com/zbirenbaum/copilot-cmp/blob/master/README.md#configuration
-      end, 100)
+      require("copilot").setup({
+        -- inline suggestion
+        -- suggestion = {
+        --   enabled = true,
+        --   auto_trigger = true
+        -- }
+      })
     end,
-  })
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function()
+      require("copilot_cmp").setup({
+        suggestion = { enabled = true },
+        panel = { enabled = false }
+      })
+    end
+  },
+  {
+    "rmagatti/auto-session",
+    config = function()
+      require("auto-session").setup({
+        auto_session_suppress_dirs = {
+          "~/",
+          "~/code",
+          "~/Downloads",
+          "~/code/elva",
+          "~/code/smart/",
+          "~/code/derome",
+          "~/code/perosnal",
+        },
+        session_lens = {
+          -- If load_on_setup is set to false, one needs to eventually call `require("auto-session").setup_session_lens()` if they want to use session-lens.
+          buftypes_to_ignore = {}, -- list of buffer types what should not be deleted from current session
+          load_on_setup = true,
+          theme_conf = { border = true },
+          previewer = false,
+        },
+        vim.keymap.set("n", "<leader>E", require("auto-session.session-lens").search_session, {
+          noremap = true,
+        })
+      })
+    end,
+  }
 }
+
+lvim.builtin.treesitter.rainbow.enable = true
