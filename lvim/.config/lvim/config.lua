@@ -69,3 +69,5 @@ lvim.plugins = {
     }
   },
 }
+
+lvim.colorscheme = "catppuccin"
