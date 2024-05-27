@@ -1,5 +1,11 @@
 # Hello
 
+ignore the symlinks use stow!
+
+```bash
+stow --target=/home/venthur */
+```
+
 ## Symlinks
 
 Gotta learn how to make them easier to handle but this is fine.

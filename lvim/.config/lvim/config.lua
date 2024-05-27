@@ -11,7 +11,6 @@ lvim.keys.normal_mode["-"] = ":split<CR>"
 lvim.keys.normal_mode["<C_d>"] = "<C_d>zz"
 lvim.keys.normal_mode["<C_u>"] = "<C_u>zz"
 
-
 -- Spectre
 lvim.keys.normal_mode["<leader>S"] = '<cmd>lua require("spectre").toggle()<CR>'
 lvim.keys.normal_mode["<leader>sw"] = '<cmd>lua require("spectre").open_visual({select_word=true})<CR>'
