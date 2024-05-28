@@ -36,8 +36,6 @@ lvim.keys.normal_mode["<leader>P"] = "<cmd>lua require'telescope'.extensions.pro
 -- Copilot
 -- lvim.keys.normal_mode["<leader>C"] = '<cmd>lua require("copilot_panel").accept(){}<CR>'
 
--- TODO: User Config for predefined plugins
--- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
@@ -206,7 +204,19 @@ lvim.plugins = {
         })
       })
     end,
-  }
+  },
+  {
+    "mistricky/codesnap.nvim",
+    build = "make",
+    config = function()
+      require("codesnap").setup({
+        -- ...
+        has_breadcrumbs = true,
+        bg_color = "#535c68",
+        watermark = "elva"
+      })
+    end,
+  },
 }
 
 lvim.builtin.treesitter.rainbow.enable = true
