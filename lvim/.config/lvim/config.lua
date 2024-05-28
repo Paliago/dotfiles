@@ -17,6 +17,15 @@ lvim.keys.normal_mode["<leader>sw"] = '<cmd>lua require("spectre").open_visual({
 lvim.keys.visual_mode["<leader>sw"] = '<esc><cmd>lua require("spectre").open_visual()<CR>'
 lvim.keys.normal_mode["<leader>sp"] = '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>'
 
+-- formatters
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  {
+    command = "prettier",
+    filetypes = { "typescript", "typescriptreact" },
+  },
+}
+
 lvim.plugins = {
   -- theme
   {
