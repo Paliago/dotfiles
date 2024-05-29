@@ -2,6 +2,7 @@ vim.opt.relativenumber = true
 vim.opt.wrap = true
 
 vim.opt.guifont = "FiraCode Nerd Font Mono:h15"
+vim.g.neovide_input_macos_alt_is_meta = true
 
 -- split
 lvim.keys.normal_mode["|"] = ":vsplit<CR>"
@@ -16,6 +17,8 @@ lvim.keys.normal_mode["<leader>S"] = '<cmd>lua require("spectre").toggle()<CR>'
 lvim.keys.normal_mode["<leader>sw"] = '<cmd>lua require("spectre").open_visual({select_word=true})<CR>'
 lvim.keys.visual_mode["<leader>sw"] = '<esc><cmd>lua require("spectre").open_visual()<CR>'
 lvim.keys.normal_mode["<leader>sp"] = '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>'
+
+lvim.format_on_save.enabled = true
 
 -- formatters
 local formatters = require "lvim.lsp.null-ls.formatters"
