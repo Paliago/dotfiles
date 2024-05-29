@@ -1,17 +1,20 @@
 # Oh my zsh
 export ZSH="$HOME/.oh-my-zsh"
 
+# Volta for managing JavaScript toolchains
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
+# ZSH Theme
 ZSH_THEME="robbyrussell"
 
-# ZSH-history
+# ZSH History Configuration
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
+# Oh my zsh plugins
 plugins=(
   aws
   colored-man-pages
@@ -22,14 +25,12 @@ plugins=(
   autoupdate
 )
 
+# Source oh-my-zsh and other necessary scripts
 source $ZSH/oh-my-zsh.sh
 source ~/.bash_profile
 
-# User configuration
-
-## Aliases
-alias vim="lvim"
-
+# Aliases
+## Git aliases
 alias gpsu="git push --set-upstream origin"
 alias gswc="git switch -c"
 alias gswm="git switch main"
@@ -38,26 +39,36 @@ alias gl="git pull"
 alias gp="git push"
 alias ga="git add"
 
-alias ls="ls -alG --color=auto"
+alias lg="lazygit"
 
+## Directory navigation
 alias home="cd ~"
 alias ..="cd .."
-alias modshell="vim ~/.zshrc"
-alias modaws="vim ~/.aws"
-alias modmods="vim ~/.config"
-alias modship="vim ~/.config/starship.toml"
-alias modbar="vim ~/.config/sketchybar"
-alias modlunar="vim ~/.config/lvim/config.lua"
-alias modmux="vim ~/.tmux.conf"
-alias modzelli="vim ~/.config/zellij/config.kdl"
 
+## File editing
+alias edit="lvim"
+
+alias modshell="edit ~/.zshrc"
+alias modaws="edit ~/.aws"
+alias modmods="edit ~/.config"
+alias modship="edit ~/.config/starship.toml"
+alias modbar="edit ~/.config/sketchybar"
+alias modlunar="edit ~/.config/lvim/config.lua"
+alias modmux="edit ~/.tmux.conf"
+alias modzelli="edit ~/.config/zellij/config.kdl"
+
+## AWS identity check
 alias whoiam="aws sts get-caller-identity | jq -r '\"Account: \(.Account)\nUserId: \(.UserId)\nArn: \(.Arn)\"'"
 
+## pnpm shortcut
 alias pn=pnpm
+
+## Miscellaneous
+alias ls="ls -al --color=auto"
 
 ## Scripts
 
-# Test a specific file with jest
+# Test a specific file with vitest
 # Usage: testit <path/to/file>
 testit() {
   if [ "$#" -eq 0 ]; then
@@ -117,6 +128,9 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# lvim to path
+export PATH="${HOME}/.local/bin:$PATH"
 
 # bun completions
 [ -s "${HOME}/.bun/_bun" ] && source "${HOME}/.bun/_bun"
