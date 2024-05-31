@@ -135,8 +135,12 @@ export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 # sst
 export PATH="${HOME}/.sst/bin:$PATH"
 
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 # bun completions
-[ -s "${HOME}/.bun/_bun" ] && source "${HOME}/.bun/_bun"
+[ -s "${BUN_INSTALL}/_bun" ] && source "${BUN_INSTALL}/_bun"
 
 # Starship Initialisation
 eval "$(starship init zsh)"
