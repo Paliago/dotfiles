@@ -27,7 +27,7 @@ plugins=(
 
 # Source oh-my-zsh and other necessary scripts
 source $ZSH/oh-my-zsh.sh
-source ~/.bash_profile
+# source ~/.bash_profile
 
 # Aliases
 ## Git aliases
@@ -118,9 +118,6 @@ cleangit() {
 # iTerm Shell Integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# Starship Initialisation
-eval "$(starship init zsh)"
-
 # pnpm
 export PNPM_HOME="${HOME}/Library/pnpm"
 case ":$PATH:" in
@@ -132,5 +129,11 @@ esac
 # lvim to path
 export PATH="${HOME}/.local/bin:$PATH"
 
+# add linuxbrew to path
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+
 # bun completions
 [ -s "${HOME}/.bun/_bun" ] && source "${HOME}/.bun/_bun"
+
+# Starship Initialisation
+eval "$(starship init zsh)"
