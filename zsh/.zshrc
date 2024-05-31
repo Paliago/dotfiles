@@ -5,6 +5,27 @@ export ZSH="$HOME/.oh-my-zsh"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
+# pnpm
+export PNPM_HOME="${HOME}/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# lvim to path
+export PATH="${HOME}/.local/bin:$PATH"
+
+# add linuxbrew to path
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+
+# sst
+export PATH="${HOME}/.sst/bin:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 # ZSH Theme
 ZSH_THEME="robbyrussell"
 
@@ -27,7 +48,6 @@ plugins=(
 
 # Source oh-my-zsh and other necessary scripts
 source $ZSH/oh-my-zsh.sh
-# source ~/.bash_profile
 
 # Aliases
 ## Git aliases
@@ -117,27 +137,6 @@ cleangit() {
 
 # iTerm Shell Integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# pnpm
-export PNPM_HOME="${HOME}/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-# lvim to path
-export PATH="${HOME}/.local/bin:$PATH"
-
-# add linuxbrew to path
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-
-# sst
-export PATH="${HOME}/.sst/bin:$PATH"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 # bun completions
 [ -s "${BUN_INSTALL}/_bun" ] && source "${BUN_INSTALL}/_bun"
