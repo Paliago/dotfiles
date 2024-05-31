@@ -132,6 +132,9 @@ export PATH="${HOME}/.local/bin:$PATH"
 # add linuxbrew to path
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
+# sst
+export PATH="${HOME}/.sst/bin:$PATH"
+
 # bun completions
 [ -s "${HOME}/.bun/_bun" ] && source "${HOME}/.bun/_bun"
 
