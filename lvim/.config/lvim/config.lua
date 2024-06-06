@@ -1,7 +1,6 @@
 vim.opt.relativenumber = true
 vim.opt.wrap = true
 
-vim.opt.guifont = "FiraCode Nerd Font Mono:h15"
 vim.g.neovide_input_macos_alt_is_meta = true
 
 -- split
@@ -30,6 +29,13 @@ formatters.setup {
 }
 
 lvim.plugins = {
+  -- rust
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^4', -- Recommended
+    lazy = false, -- This plugin is already lazy
+  },
+
   -- theme
   {
     "catppuccin/nvim",
