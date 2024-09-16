@@ -26,6 +26,8 @@ export PATH="${HOME}/.sst/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
+
 # ZSH Theme
 ZSH_THEME="robbyrussell"
 
@@ -52,6 +54,7 @@ source $ZSH/oh-my-zsh.sh
 # Aliases
 ## Git aliases
 alias gpsu="git push --set-upstream origin"
+alias gsw="git switch"
 alias gswc="git switch -c"
 alias gswm="git switch main"
 alias gf="git fetch"
@@ -66,16 +69,20 @@ alias home="cd ~"
 alias ..="cd .."
 
 ## File editing
-alias edit="lvim"
+alias edit="nvim"
+alias zj="zellij"
 
 alias modshell="edit ~/.zshrc"
 alias modaws="edit ~/.aws"
 alias modmods="edit ~/.config"
 alias modship="edit ~/.config/starship.toml"
 alias modbar="edit ~/.config/sketchybar"
+alias modnvim="edit ~/.config/nvim"
 alias modlunar="edit ~/.config/lvim/config.lua"
 alias modmux="edit ~/.tmux.conf"
 alias modzelli="edit ~/.config/zellij/config.kdl"
+
+alias reloadz="source ~/.zshrc"
 
 ## AWS identity check
 alias whoiam="aws sts get-caller-identity | jq -r '\"Account: \(.Account)\nUserId: \(.UserId)\nArn: \(.Arn)\"'"
@@ -126,6 +133,42 @@ gc() {
   else
     echo "Unknown shorthand: $shorthand"
     return 1
+  fi
+}
+
+# Find and kill process using a port
+# Usage: fp <port number>
+fp() {
+  if [ $# -eq 0 ]; then
+    echo "Hol' up"
+    return 1
+  fi
+
+  local port=$1
+  local process_info=$(lsof -i :$port -sTCP:LISTEN -P -n)
+
+  if [ -z "$process_info" ]; then
+    echo "No process found listening on port $port"
+    return 1
+  fi
+
+  local pid=$(echo "$process_info" | awk 'NR==2 {print $2}')
+  local process_name=$(echo "$process_info" | awk 'NR==2 {print $1}')
+
+  echo "Found process '$process_name' (PID: $pid) listening on port $port"
+  
+  read -q "REPLY?Do you want to kill this process? (y/n) "
+  echo
+
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    kill -9 $pid
+    if [ $? -eq 0 ]; then
+        echo "Process '$process_name' (PID: $pid) has been killed"
+    else
+        echo "Failed to kill process. You may need sudo privileges."
+    fi
+  else
+    echo "Operation cancelled"
   fi
 }
 
