@@ -84,6 +84,10 @@ alias modzelli="edit ~/.config/zellij/config.kdl"
 
 alias reloadz="source ~/.zshrc"
 
+## Leapp
+alias lsc="leapp session current"
+alias lss="leapp session start"
+
 ## AWS identity check
 alias whoiam="aws sts get-caller-identity | jq -r '\"Account: \(.Account)\nUserId: \(.UserId)\nArn: \(.Arn)\"'"
 
@@ -91,9 +95,19 @@ alias whoiam="aws sts get-caller-identity | jq -r '\"Account: \(.Account)\nUserI
 alias pn=pnpm
 
 ## Miscellaneous
-alias ls="ls -al --color=auto"
+alias ls="ls -alh --color=auto"
 
 ## Scripts
+
+# Leapp session lookup
+lsl() {
+  if [ "$#" -eq 0 ]; then
+    echo "Hol' up"
+  else
+    leapp session list "|" grep "-i" "$*"
+  fi
+}
+
 
 # Test a specific file with vitest
 # Usage: testit <path/to/file>
