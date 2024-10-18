@@ -80,6 +80,7 @@ alias modbar="edit ~/.config/sketchybar"
 alias modnvim="edit ~/.config/nvim"
 alias modlunar="edit ~/.config/lvim/config.lua"
 alias modmux="edit ~/.tmux.conf"
+alias modwez="edit ~/.wezterm.lua"
 alias modzelli="edit ~/.config/zellij/config.kdl"
 
 alias reloadz="source ~/.zshrc"
