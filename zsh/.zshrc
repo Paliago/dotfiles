@@ -68,6 +68,9 @@ alias lg="lazygit"
 alias home="cd ~"
 alias ..="cd .."
 
+## Etc
+alias tree="tree -d --gitignore"
+
 ## File editing
 alias edit="nvim"
 alias zj="zellij"
