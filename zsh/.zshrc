@@ -17,7 +17,7 @@ esac
 export PATH="${HOME}/.local/bin:$PATH"
 
 # add linuxbrew to path
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+# export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
 # sst
 export PATH="${HOME}/.sst/bin:$PATH"
@@ -26,7 +26,11 @@ export PATH="${HOME}/.sst/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# sqlite
 export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
+
+# love
+alias love="/Applications/love.app/Contents/MacOS/love"
 
 # ZSH Theme
 ZSH_THEME="robbyrussell"
@@ -69,7 +73,8 @@ alias home="cd ~"
 alias ..="cd .."
 
 ## Etc
-alias tree="tree -d --gitignore"
+alias tree="tree --gitignore"
+alias treed="tree -d --gitignore"
 
 ## File editing
 alias edit="nvim"
@@ -83,8 +88,8 @@ alias modbar="edit ~/.config/sketchybar"
 alias modnvim="edit ~/.config/nvim"
 alias modlunar="edit ~/.config/lvim/config.lua"
 alias modmux="edit ~/.tmux.conf"
-alias modwez="edit ~/.wezterm.lua"
 alias modzelli="edit ~/.config/zellij/config.kdl"
+alias modneo="edit ~/.config/nvim"
 
 alias reloadz="source ~/.zshrc"
 

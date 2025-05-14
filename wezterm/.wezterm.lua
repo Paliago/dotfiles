@@ -135,11 +135,11 @@ config.keys = {
 		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
 	},
 
-	{
-		key = "a",
-		mods = "LEADER|CTRL",
-		action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }),
-	},
+	-- {
+	-- 	key = "a",
+	-- 	mods = "LEADER|CTRL",
+	-- 	action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }),
+	-- },
 
 	move_pane("j", "Down"),
 	move_pane("k", "Up"),
