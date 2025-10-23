@@ -29,8 +29,11 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # sqlite
 export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
 
-# love
-alias love="/Applications/love.app/Contents/MacOS/love"
+# terraform
+export PATH=$PATH:~/opt/terraform
+
+# Editor
+export EDITOR="edit"
 
 # ZSH Theme
 ZSH_THEME="robbyrussell"
@@ -43,7 +46,6 @@ setopt appendhistory
 
 # Oh my zsh plugins
 plugins=(
-  aws
   colored-man-pages
   jump
   sudo
@@ -84,18 +86,11 @@ alias modshell="edit ~/.zshrc"
 alias modaws="edit ~/.aws"
 alias modmods="edit ~/.config"
 alias modship="edit ~/.config/starship.toml"
-alias modbar="edit ~/.config/sketchybar"
-alias modnvim="edit ~/.config/nvim"
-alias modlunar="edit ~/.config/lvim/config.lua"
 alias modmux="edit ~/.tmux.conf"
 alias modzelli="edit ~/.config/zellij/config.kdl"
 alias modneo="edit ~/.config/nvim"
 
 alias reloadz="source ~/.zshrc"
-
-## Leapp
-alias lsc="leapp session current"
-alias lss="leapp session start"
 
 ## AWS identity check
 alias whoiam="aws sts get-caller-identity | jq -r '\"Account: \(.Account)\nUserId: \(.UserId)\nArn: \(.Arn)\"'"
@@ -106,17 +101,10 @@ alias pn=pnpm
 ## Miscellaneous
 alias ls="ls -alh --color=auto"
 
+# love
+alias love="/Applications/love.app/Contents/MacOS/love"
+
 ## Scripts
-
-# Leapp session lookup
-lsl() {
-  if [ "$#" -eq 0 ]; then
-    echo "Hol' up"
-  else
-    leapp session list "|" grep "-i" "$*"
-  fi
-}
-
 
 # Test a specific file with vitest
 # Usage: testit <path/to/file>
@@ -160,7 +148,7 @@ gc() {
 }
 
 # Find and kill process using a port
-# Usage: fp <port number>
+# Usage: fp <port number
 fp() {
   if [ $# -eq 0 ]; then
     echo "Hol' up"
@@ -195,14 +183,11 @@ fp() {
   fi
 }
 
-# Removes dead remote branches and old local branches
+# Removes dead remote branches and old local branches and keeeps main
 # Usage: cleangit
 cleangit() {
   git fetch --prune && git branch | grep -v "main" | xargs git branch -D
 }
-
-# iTerm Shell Integration
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # bun completions
 [ -s "${BUN_INSTALL}/_bun" ] && source "${BUN_INSTALL}/_bun"

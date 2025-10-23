@@ -23,10 +23,8 @@ $python\
 $conda\
 [](fg:sapphire bg:lavender)\
 $time\
-[ ](fg:lavender)\
-$cmd_duration\
-$line_break\
-$character"""
+[ ](fg:lavender)
+"""
 
 palette = 'catppuccin_mocha'
 
@@ -143,7 +141,18 @@ ignore_base = false
 disabled = false
 time_format = "%R"
 style = "bg:lavender"
-format = '[[  $time ](fg:crust bg:lavender)]($style)'
+format = '[[ $time](fg:crust bg:lavender)]($style)'
+
+[aws]
+format = '[[ $symbol( $profile )(  $duration )( $region )](fg:crust bg:sapphire)]($style)'
+style = "bg:sapphire"
+symbol = '☁️'
+force_display = true
+expiration_symbol = "X "
+[aws.region_aliases]
+eu-north-1 = 'sthlm'
+eu-west-1 = 'irel'
+eu-central-1 = 'frank'
 
 [line_break]
 disabled = true
