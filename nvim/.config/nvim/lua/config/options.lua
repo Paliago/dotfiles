@@ -2,7 +2,10 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
-local opt = vim.opt
-opt.wrap = true
+vim.opt.wrap = true
 
-vim.g.root_spec = { { ".git", "lua" }, "cwd" }
+-- Disable inlay hints
+vim.g.lazyvim_inlay_hints_enabled = false
+
+-- Also disable via LSP directly
+vim.lsp.inlay_hint.enable(false)
