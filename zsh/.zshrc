@@ -5,32 +5,11 @@ export ZSH="$HOME/.oh-my-zsh"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
-# pnpm
-export PNPM_HOME="${HOME}/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-# lvim to path
+# .local/bin to path
 export PATH="${HOME}/.local/bin:$PATH"
 
 # add linuxbrew to path
-# export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-
-# sst
-export PATH="${HOME}/.sst/bin:$PATH"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# sqlite
-export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
-
-# terraform
-export PATH=$PATH:~/opt/terraform
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Editor
 export EDITOR="edit"
@@ -49,9 +28,10 @@ plugins=(
   colored-man-pages
   jump
   sudo
+  # https://github.com/zsh-users/zsh-autosuggestions
   zsh-autosuggestions
+  # https://github.com/zdharma-continuum/fast-syntax-highlighting
   fast-syntax-highlighting
-  autoupdate
 )
 
 # Source oh-my-zsh and other necessary scripts
@@ -101,20 +81,7 @@ alias pn=pnpm
 ## Miscellaneous
 alias ls="ls -alh --color=auto"
 
-# love
-alias love="/Applications/love.app/Contents/MacOS/love"
-
 ## Scripts
-
-# Test a specific file with vitest
-# Usage: testit <path/to/file>
-testit() {
-  if [ "$#" -eq 0 ]; then
-    echo "Hol' up"
-  else
-    bunx vitest "-i" "tests/$*.test.ts"
-  fi
-}
 
 # Commit with shorthand for commitlint
 # Usage: gc <shorthand> <message here>
