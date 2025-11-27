@@ -1,0 +1,12 @@
+[user]
+	name = Alvin Johansson
+  email = alvin@donedev.se
+
+[includeIf "gitdir:~/code/elva/"]
+  path = ~/.git_identities/elva.gitconfig
+
+[includeIf "gitdir:~/code/stampen/"]
+  path = ~/.git_identities/stampen.gitconfig
+
+[init]
+  defaultBranch = main
