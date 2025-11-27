@@ -1,0 +1,77 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "anthropic/claude-sonnet-4-5-20250929",
+  "mcp": {
+    "aws-api-mcp-server": {
+      "type": "local",
+      "command": ["uvx", "awslabs.aws-api-mcp-server@latest"],
+      "environment": {},
+      "enabled": true,
+    },
+    "aws-knowledge-mcp-server": {
+      "type": "remote",
+      "url": "https://knowledge-mcp.global.api.aws",
+      "enabled": true,
+    },
+    "cdk-mcp-server": {
+      "type": "local",
+      "command": ["uvx", "awslabs.cdk-mcp-server@latest"],
+      "environment": {
+        "FASTMCP_LOG_LEVEL": "ERROR",
+      },
+      "enabled": true,
+    },
+    "awslabs-stepfunctions-tool-mcp-server": {
+      "type": "local",
+      "command": ["uvx", "awslabs.stepfunctions-tool-mcp-server@latest"],
+      "environment": {
+        "AWS_REGION": "eu-west-1",
+      },
+      "enabled": true,
+    },
+    "dynamodb-mcp-server": {
+      "type": "local",
+      "command": ["uvx", "awslabs.dynamodb-mcp-server@latest"],
+      "environment": {
+        "DDB-MCP-READONLY": "true",
+        "FASTMCP_LOG_LEVEL": "ERROR",
+      },
+      "enabled": true,
+    },
+    "aurora-dsql-mcp-server": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "awslabs.aurora-dsql-mcp-server@latest",
+        "--cluster_endpoint",
+        "[your dsql cluster endpoint]",
+        "--region",
+        "[your dsql cluster region, e.g. us-east-1]",
+        "--database_user",
+        "[your dsql username]",
+        "--profile",
+        "default",
+      ],
+      "environment": {
+        "FASTMCP_LOG_LEVEL": "ERROR",
+      },
+      "enabled": false,
+    },
+    "cost-explorer-mcp-server": {
+      "type": "local",
+      "command": ["uvx", "awslabs.cost-explorer-mcp-server@latest"],
+      "environment": {
+        "FASTMCP_LOG_LEVEL": "ERROR",
+      },
+      "enabled": true,
+    },
+    "cloudwatch-mcp-server": {
+      "type": "local",
+      "command": ["uvx", "awslabs.cloudwatch-mcp-server@latest"],
+      "environment": {
+        "FASTMCP_LOG_LEVEL": "ERROR",
+      },
+      "enabled": true,
+    },
+  },
+}
