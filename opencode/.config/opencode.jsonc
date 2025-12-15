@@ -13,13 +13,21 @@
       "url": "https://knowledge-mcp.global.api.aws",
       "enabled": true,
     },
+    "aws-iac-mcp-server": {
+      "type": "local",
+      "command": ["uvx", "awslabs.aws-iac-mcp-server@latest"],
+      "environment": {
+        "FASTMCP_LOG_LEVEL": "ERROR",
+      },
+      "enabled": true,
+    },
     "cdk-mcp-server": {
       "type": "local",
       "command": ["uvx", "awslabs.cdk-mcp-server@latest"],
       "environment": {
         "FASTMCP_LOG_LEVEL": "ERROR",
       },
-      "enabled": true,
+      "enabled": false,
     },
     "awslabs-stepfunctions-tool-mcp-server": {
       "type": "local",
