@@ -38,6 +38,14 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Aliases
+## Corepack
+alias yarn="corepack yarn"
+alias yarnpkg="corepack yarnpkg"
+alias pnpm="corepack pnpm"
+alias pnpx="corepack pnpx"
+alias npm="corepack npm"
+alias npx="corepack npx"
+
 ## Git aliases
 alias gpsu="git push --set-upstream origin"
 alias gsw="git switch"
@@ -75,8 +83,9 @@ alias reloadz="source ~/.zshrc"
 ## AWS identity check
 alias whoiam="aws sts get-caller-identity | jq -r '\"Account: \(.Account)\nUserId: \(.UserId)\nArn: \(.Arn)\"'"
 
-## pnpm shortcut
+## shortcuts
 alias pn=pnpm
+alias oc=opencode
 
 ## Miscellaneous
 alias ls="ls -alh --color=auto"
