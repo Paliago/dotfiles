@@ -56,7 +56,7 @@ sudo apt install neovim
 brew tap elva-labs/elva
 brew install --cask font-sauce-code-pro-nerd-font
 brew install --cask font-fira-code-nerd-font
-brew install lazygit awsesh oven-sh/bun/bun zellij opencode
+brew install lazygit awsesh oven-sh/bun/bun zellij anomalyco/tap/opencode
 
 # volta (node)
 curl https://get.volta.sh | bash
