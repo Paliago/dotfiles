@@ -11,8 +11,6 @@ export PATH="${HOME}/.local/bin:$PATH"
 # add linuxbrew to path
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-# Editor
-export EDITOR="edit"
 
 # ZSH Theme
 ZSH_THEME="robbyrussell"
@@ -68,6 +66,8 @@ alias treed="tree -d --gitignore"
 
 ## File editing
 alias edit="nvim"
+export EDITOR="nvim"
+
 alias zj="zellij"
 
 alias modshell="edit ~/.zshrc"
